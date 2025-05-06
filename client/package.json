@@ -22,10 +22,12 @@
     "@radix-ui/react-slot": "^1.1.0",
     "@radix-ui/react-toast": "^1.2.2",
     "@tanstack/react-query": "^5.61.0",
+    "@tanstack/react-query-devtools": "^4.36.1",
     "@tanstack/react-router": "^1.112.11",
     "@trpc/client": "11.0.0-rc.645",
     "@trpc/react-query": "11.0.0-rc.645",
     "@trpc/server": "11.0.0-rc.645",
+    "axios": "^1.9.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "cmdk": "1.0.0",
@@ -41,6 +43,7 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
+    "@tanstack/eslint-plugin-query": "^5.74.7",
     "@tanstack/router-devtools": "^1.83.0",
     "@tanstack/router-plugin": "^1.83.0",
     "@types/leaflet": "^1.9.16",

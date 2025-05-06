@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import ThemeProvider from "./context/ThemeProvider";
 import Navbar from "./features/shared/components/layout/Navbar";
 import { Toaster } from "./features/shared/components/ui/Toaster";
@@ -6,6 +7,7 @@ import { trpc } from "./trpc";
 import { httpBatchLink } from "@trpc/react-query";
 import { env } from "./lib/utils/env";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import ExperienceList from "./features/experinces/components/ExperienceList";
 export function App() {
   const [queryClient] = useState(() => new QueryClient());
   const [trpcClient] = useState(() =>
@@ -37,9 +39,8 @@ export function App() {
                   </b>
                 </p>
               </header>
-              <div className="space-y-4 p-4">
-                <Index />
-              </div>
+
+              <Index />
             </div>
           </div>
         </ThemeProvider>
@@ -49,6 +50,13 @@ export function App() {
 }
 
 function Index() {
-  const { data } = trpc.experiences.byId.useQuery({ id: 1 });
-  return <div>{data?.title}</div>;
+  const experiencesQuery = trpc.experiences.feed.useQuery({});
+  return (
+    <div>
+      <ExperienceList
+        experiences={experiencesQuery.data?.experiences ?? []}
+        isLoading={experiencesQuery.isLoading}
+      />
+    </div>
+  );
 }

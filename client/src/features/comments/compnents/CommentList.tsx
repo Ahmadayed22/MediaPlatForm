@@ -1,4 +1,4 @@
-import RenderList from "@/features/shared/components/common/RenderList";
+// import RenderList from "@/features/shared/components/common/RenderList";
 import Spinner from "@/features/shared/components/ui/Spinner";
 import CommentCard from "./CommentCard";
 import { CommentForList } from "../types";

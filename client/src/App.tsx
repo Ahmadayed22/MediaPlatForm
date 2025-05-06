@@ -8,6 +8,7 @@ import { httpBatchLink } from "@trpc/react-query";
 import { env } from "./lib/utils/env";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import ExperienceList from "./features/experinces/components/ExperienceList";
+import InfiniteScroll from "./features/shared/components/common/InfiniteScroll";
 export function App() {
   const [queryClient] = useState(() => new QueryClient());
   const [trpcClient] = useState(() =>
@@ -50,13 +51,25 @@ export function App() {
 }
 
 function Index() {
-  const experiencesQuery = trpc.experiences.feed.useQuery({});
+  const experiencesQuery = trpc.experiences.feed.useInfiniteQuery(
+    {},
+    {
+      getNextPageParam: (lastPage) => lastPage.nextCursor,
+    },
+  );
   return (
     <div>
-      <ExperienceList
-        experiences={experiencesQuery.data?.experiences ?? []}
-        isLoading={experiencesQuery.isLoading}
-      />
+      <InfiniteScroll onLoadMore={experiencesQuery.fetchNextPage}>
+        <ExperienceList
+          experiences={
+            experiencesQuery.data?.pages.flatMap((page) => page.experiences) ??
+            []
+          }
+          isLoading={
+            experiencesQuery.isLoading || experiencesQuery.isFetchNextPageError
+          }
+        />
+      </InfiniteScroll>
     </div>
   );
 }

@@ -165,7 +165,7 @@ export const commentRouter = router({
       return updatedComments[0];
     }),
 
-  delete: protectedProcedure
+  delete: publicProcedure
     .input(z.object({ id: commentSelectSchema.shape.id }))
     .mutation(async ({ ctx, input }) => {
       const comment = await db.query.commentsTable.findFirst({
@@ -178,15 +178,12 @@ export const commentRouter = router({
           message: "Comment not found",
         });
       }
-
+      const userId = 1;
       const experience = await db.query.experiencesTable.findFirst({
         where: eq(experiencesTable.id, comment.experienceId),
       });
 
-      if (
-        comment.userId !== ctx.user.id &&
-        experience?.userId !== ctx.user.id
-      ) {
+      if (comment.userId !== userId && experience?.userId !== userId) {
         throw new TRPCError({
           code: "FORBIDDEN",
           message: "You can only delete your own comments",

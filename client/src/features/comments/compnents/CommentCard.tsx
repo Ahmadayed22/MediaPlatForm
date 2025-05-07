@@ -3,7 +3,7 @@ import { CommentForList } from "../types";
 import { useState } from "react";
 import { CommentEditForm } from "./CommentEditForm";
 import { Button } from "@/features/shared/components/ui/Button";
-import { trpc } from "@/trpc";
+import { trpc } from "@/router";
 import { useToast } from "@/features/shared/hooks/useToast";
 import DialogDelete from "@/features/shared/components/common/Model/DialogDelete";
 

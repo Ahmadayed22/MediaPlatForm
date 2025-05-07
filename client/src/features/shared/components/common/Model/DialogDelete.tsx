@@ -2,7 +2,7 @@ import { Dialog, DialogTitle, DialogTrigger } from "@radix-ui/react-dialog";
 
 import { Button } from "../../ui/Button";
 import { DialogContent, DialogFooter, DialogHeader } from "../../ui/Dialog";
-import { trpc } from "@/trpc";
+import { trpc } from "@/router";
 import { CommentForList } from "@/features/comments/types";
 
 type DeleteMutationType = ReturnType<typeof trpc.comments.delete.useMutation>;

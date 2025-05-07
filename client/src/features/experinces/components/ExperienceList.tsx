@@ -1,5 +1,5 @@
 import Spinner from "@/features/shared/components/ui/Spinner";
-// import { trpc } from "@/trpc";
+// import { trpc } from "@/router";
 // import { Experience } from "@advanced-react/server/database/schema";
 
 import ExperienceCard from "./ExperienceCard";

@@ -10,6 +10,7 @@ import {
 import { env } from "./lib/utils/env";
 import { routeTree } from "./routeTree.gen";
 import Spinner from "./features/shared/components/ui/Spinner";
+
 import { ErrorComponent } from "./features/shared/components/common/ErrorComponent";
 
 export const queryClient = new QueryClient();
@@ -42,7 +43,9 @@ function createRouter() {
         <Spinner />
       </div>
     ),
+
     defaultErrorComponent: ErrorComponent,
+
     Wrap: function WrapComponent({ children }) {
       return (
         <trpc.Provider client={trpcClient} queryClient={queryClient}>

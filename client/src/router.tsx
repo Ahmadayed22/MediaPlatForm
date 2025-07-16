@@ -9,6 +9,7 @@ import {
 
 import { env } from "./lib/utils/env";
 import { routeTree } from "./routeTree.gen";
+import Spinner from "./features/shared/components/ui/Spinner";
 
 export const queryClient = new QueryClient();
 
@@ -35,6 +36,11 @@ function createRouter() {
     context: {
       trpcQueryUtils,
     },
+    defaultPendingComponent: () => (
+      <div className="flex items-center justify-center">
+        <Spinner />
+      </div>
+    ),
     Wrap: function WrapComponent({ children }) {
       return (
         <trpc.Provider client={trpcClient} queryClient={queryClient}>
